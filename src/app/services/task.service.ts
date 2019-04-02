@@ -10,25 +10,23 @@ export class TaskService
     tasks: Task[];
 
     constructor() {
-        const datas = JSON.parse(localStorage.getItem('tasks'));
+        const datas = JSON.parse(localStorage.getItem('tasks')) || [];
         this.tasks = datas.map(data =>
             new Task(data.id, data.name, data.status)
         );
     }
 
     incrementId(): number {
-        return this.tasks.length == 0 ? 1 : this.tasks.[this.tasks.length - 1].id + 1;
+        return this.tasks.length == 0 ? 1 : this.tasks[this.tasks.length - 1].id + 1;
     }
 
     add(task): void {
         this.tasks.push(new Task(task.id, task.name, task.status));
-        localStorage.setItem('tasks', JSON.stringify(this.tasks));
         this.setToStorage();
     }
 
     remove(task): void {
         this.tasks.splice(this.tasks.indexOf(task), 1);
-        localStorage.setItem('tasks', JSON.stringify(this.tasks));
         this.setToStorage();
     }
 

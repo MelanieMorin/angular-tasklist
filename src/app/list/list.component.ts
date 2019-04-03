@@ -10,6 +10,7 @@ import { TaskService } from '../services/task.service';
 })
 export class ListComponent implements OnInit {
 
+  tasks:Task[];
   defaults: Task[];
   keywords:string = '';
 

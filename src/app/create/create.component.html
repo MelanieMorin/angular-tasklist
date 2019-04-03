@@ -9,10 +9,8 @@
     <div class="form-group">
       <label>Statut</label>
       <select class="form-control" formControlName="status">
-        <option value=""></option>
-        <option value="To do">To do</option>
-        <option value="Doing">Doing</option>
-        <option value="Done">Done</option>
+        <option [ngValue]="false">To do</option>
+        <option [ngValue]="true">Done</option>
       </select>
       <small class="alert-danger" *ngIf="!taskForm.controls.status.valid">Vous devez sélectionner une valeur</small>
     </div>

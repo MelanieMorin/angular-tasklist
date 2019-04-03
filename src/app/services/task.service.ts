@@ -21,7 +21,8 @@ export class TaskService
     }
 
     add(task): void {
-        this.tasks.push(new Task(task.id, task.name, task.status));
+        this.tasks.push(new Task(this.incrementId(), task.name, task.status));
+        console.log(this.tasks);
         this.setToStorage();
     }
 

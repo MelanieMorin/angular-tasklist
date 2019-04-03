@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.sass']
+  styleUrls: ['./create.component.sass'],
+  providers: [TaskService]
 })
 export class CreateComponent implements OnInit {
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private taskService: TaskService
   )
   {  }
 
@@ -19,7 +22,7 @@ export class CreateComponent implements OnInit {
         '',
         Validators.compose([
           Validators.minLength(3),
-          Validators.maxLength(15)
+          Validators.maxLength(50)
         ])
       ],
       status: ['',
@@ -28,8 +31,8 @@ export class CreateComponent implements OnInit {
     }
   );
 
-  submit() {
-    console.log("Traitement des données");
+  submit(): void {
+    this.taskService.add(this.taskForm.value);
   }
 
   ngOnInit() {

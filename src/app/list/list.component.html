@@ -1,42 +1,55 @@
 <div class="container mt-5">
-  <h1>Liste des tâches</h1>
+  <div class="row">
 
-  <input placeholder="Rechercher" [(ngModel)]="keywords" (input)="search()" type="text" class="form-control" />
-  <br>
+    <div class="col-6">
+      <app-create [service]="taskService"></app-create>
+    </div>
 
-  <p *ngIf="keywords != ''">Résultats pour la recherche : {{ keywords }}</p>
-  <table class="table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>
-          #
-        </th>
-        <th>
-          Nom
-        </th>
-        <th>
-          Statut
-        </th>
-        <th>
-          Action
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let task of tasks">
-        <td>
-          {{task.id}}
-        </td>
-        <td>
-          {{task.getName()}}
-        </td>
-        <td>
-          {{task.getStatus()}}
-        </td>
-        <td>
-          <button (click)="task.changeStatus()" class="btn btn-success">Changer le statut</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="col-6">
+      <h1>Liste des tâches</h1>
+
+      <input placeholder="Rechercher" [(ngModel)]="keywords" (input)="search()" type="text" class="form-control" />
+      <br>
+
+      <p *ngIf="keywords != ''">Résultats pour la recherche : {{ keywords }}</p>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>
+              #
+            </th>
+            <th>
+              Nom
+            </th>
+            <th>
+              Statut
+            </th>
+            <th colspan="2">
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>
+              {{task.id}}
+            </td>
+            <td>
+              {{task.getName()}}
+            </td>
+            <td>
+              {{task.getStatus()}}
+            </td>
+            <td>
+              <button (click)="task.changeStatus()" class="btn btn-success">Changer le statut</button>
+            </td>
+            <td>
+              <button (click)="delete(task)" class="btn btn-danger">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </div>

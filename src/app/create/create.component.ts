@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { TaskService } from '../services/task.service';
+import { Task } from '../models/task';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.sass'],
-  providers: [TaskService]
+  styleUrls: ['./create.component.sass']
 })
 export class CreateComponent implements OnInit {
 
+  @Input() service;
+  
   constructor(
-    private fb: FormBuilder,
-    private taskService: TaskService
+    private fb: FormBuilder
   )
   {  }
 
@@ -32,7 +32,7 @@ export class CreateComponent implements OnInit {
   );
 
   submit(): void {
-    this.taskService.add(this.taskForm.value);
+    this.service.add(this.taskForm.value);
   }
 
   ngOnInit() {

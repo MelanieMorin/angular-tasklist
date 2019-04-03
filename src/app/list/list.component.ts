@@ -10,12 +10,6 @@ import { TaskService } from '../services/task.service';
 })
 export class ListComponent implements OnInit {
 
-  tasks:Task[] /*= [
-    new Task(1, 'Dire à Sam d\'arrêter de boire', false),
-    new Task(2, 'Partir de l\'IMIE', false),
-    new Task(3, 'Dormir 9h', false),
-    new Task(4, 'Acheter du beaufort', false)
-  ];*/
   defaults: Task[];
   keywords:string = '';
 
@@ -26,6 +20,11 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  
+  delete(task:Task): void{
+    this.taskService.remove(task);
   }
 
   search() {
